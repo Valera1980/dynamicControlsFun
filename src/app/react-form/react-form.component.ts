@@ -1,6 +1,7 @@
 import { GenerateControlsService } from '../services/generate-controls/generate-controls.service';
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { toLocal } from '../utils/date-time';
 
 @Component({
   selector: 'app-react-form',
@@ -29,12 +30,14 @@ export class ReactFormComponent implements OnInit {
     });
     this._genControl.generate(this.dynamic, this.domPlace);
 
-    this.dynamic.get('date').patchValue(new Date());
+    setTimeout(() => {
+      // this.dynamic.get('date').patchValue(toLocal(new Date(2019, 3, 29, 3, 4)));
+    }, 2000);
 
     this.form.valueChanges
-    .subscribe(data => {
-      console.log(data);
-    });
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   get dynamic(): FormGroup {

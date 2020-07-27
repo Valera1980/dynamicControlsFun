@@ -1,7 +1,7 @@
 import { CalendarWrapperComponent } from './../../calendar-wrapper/calendar-wrapper.component';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Injectable, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { toUTC } from 'src/app/utils/date-time';
+import { toUTC, toLocal } from 'src/app/utils/date-time';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,8 @@ export class GenerateControlsService {
     const utcTime = toUTC(new Date());
     console.log(' ================ this is utcTime ===================');
     console.log(utcTime);
-    const newFc = new FormControl(new Date());
+    const newFc = new FormControl(toLocal(utcTime));
     formInstance.addControl('date', newFc);
-    ref.instance.writeValue(utcTime);
 
   }
 }
