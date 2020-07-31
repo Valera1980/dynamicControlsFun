@@ -10,12 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactFormComponent } from './react-form/react-form.component';
 import { CalendarWrapperComponent } from './calendar-wrapper/calendar-wrapper.component';
+import { DynComponentPlaceComponent } from './dyn-component-place/dyn-component-place.component';
+import { CalendarWrapperValAccesorComponent } from './calendar-wrapper-val-accesor/calendar-wrapper-val-accesor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReactFormComponent,
-    CalendarWrapperComponent
+    CalendarWrapperComponent,
+    DynComponentPlaceComponent,
+    CalendarWrapperValAccesorComponent
   ],
   imports: [
     BrowserModule,
