@@ -1,1 +1,13 @@
-<p>dyn-component-place works!</p>
+<div [formGroup]="form">
+    <div *ngFor="let model of components">
+        <div [ngSwitch]="model.type">
+            <!--CALENDAR-->
+            <div *ngSwitchCase="dynTypes.CALENDAR">
+                <app-calendar-wrapper-val-accesor 
+                    formControlName="{{model.name}}" 
+                    [label]="model.label">
+                </app-calendar-wrapper-val-accesor>
+            </div>
+        </div>
+    </div>
+</div>

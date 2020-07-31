@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
@@ -16,25 +16,31 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueAccessor {
 
-  
+  private _value: any;
+  @Input() label = 'none';
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  onChange = (v: any) => { };
+
+  // initialization
   writeValue(obj: any): void {
-    
+    this.value = obj;
   }
   registerOnChange(fn: any): void {
-    
+    this.onChange = fn;
   }
-  registerOnTouched(fn: any): void {
-    
-  }
-  setDisabledState?(isDisabled: boolean): void {
-    
-  }
+  registerOnTouched(fn: any): void { }
+  setDisabledState?(isDisabled: boolean): void { }
 
+  set value(v: any) {
+    this._value = v;
+    this.onChange(v);
+  }
+  get value(): any {
+    return this._value;
+  }
 
 }

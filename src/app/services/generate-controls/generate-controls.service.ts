@@ -1,3 +1,7 @@
+import { ModelDynComponent } from './../../models/dyn-component.model';
+import { FakeHttpDynControlsService } from './../fake-http-dyn-controls/fake-http-dyn-controls.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CalendarWrapperComponent } from './../../calendar-wrapper/calendar-wrapper.component';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Injectable, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
@@ -9,19 +13,21 @@ import { toUTC, toLocal } from 'src/app/utils/date-time';
 export class GenerateControlsService {
 
   constructor(
-    private _resolver: ComponentFactoryResolver
+    private _resolver: ComponentFactoryResolver,
+    private _cfProvider: FakeHttpDynControlsService
   ) { }
-  generate(formInstance: FormGroup, domPlace: ViewContainerRef): void {
+  generate(formInstance: FormGroup, domPlace: ViewContainerRef): Observable<ModelDynComponent[]> {
 
-    const factory = this._resolver.resolveComponentFactory(CalendarWrapperComponent);
-    const ref = domPlace.createComponent(factory);
-    ref.instance.name = 'date';
-    ref.instance.formInstance = formInstance;
-    const utcTime = toUTC(new Date());
-    console.log(' ================ this is utcTime ===================');
-    console.log(utcTime);
-    const newFc = new FormControl(toLocal(utcTime));
-    formInstance.addControl('date', newFc);
-
+    return this._cfProvider.queryControls()
+      .pipe(
+        map((df: ModelDynComponent[]) => {
+          for (const model of df) {
+            const utcTime = toUTC(new Date());
+            const newFc = new FormControl(toLocal(utcTime));
+            formInstance.addControl(model.name, newFc);
+          }
+          return df;
+        })
+      );
   }
 }

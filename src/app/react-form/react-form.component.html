@@ -4,5 +4,20 @@
     <input formControlName="email">
     <hr>
     <!-- <div #domPlace></div> -->
-    
+    <div [formGroup]="dynamic">
+        <ng-container *ngIf="df?.length">
+            <div *ngFor="let model of df">
+                <app-calendar-wrapper-val-accesor 
+                    formControlName="{{model.name}}" 
+                    [label]="model.label">
+                </app-calendar-wrapper-val-accesor>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!df">
+          <h2>Init dynamic fields .....</h2>
+        </ng-container>
+
+
+    </div>
+
 </div>
