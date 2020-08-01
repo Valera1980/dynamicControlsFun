@@ -1,0 +1,14 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  &__control-block {
+    width: 100%;
+    padding-top: 12px;
+
+  }
+  &__control {
+    width: 100%;
+    padding: 6px;
+  }
+}

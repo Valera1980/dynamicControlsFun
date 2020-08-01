@@ -1,7 +1,11 @@
 <p>reactive form</p>
-<div [formGroup]="form">
-    <input formControlName="name">
-    <input formControlName="email">
+<div class="main-container" [formGroup]="form">
+  <div class="main-container__control-block">
+    <input class="main-container__control" formControlName="name">
+  </div>
+  <div class="main-container__control-block">
+    <input class="main-container__control" formControlName="email">
+  </div>
     <hr>
         <ng-container *ngIf="df?.length">
             <app-dyn-component-place
