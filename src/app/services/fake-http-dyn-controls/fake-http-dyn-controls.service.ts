@@ -1,7 +1,7 @@
 import { ModelDynComponent } from './../../models/dyn-component.model';
 import { Injectable } from '@angular/core';
 import { Observable, of, Observer, ReplaySubject } from 'rxjs';
-import { toUTC } from 'src/app/utils/date-time';
+import { toUTC, addDays } from 'src/app/utils/date-time';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,9 @@ export class FakeHttpDynControlsService {
   constructor() { }
 
   queryControls(): Observable<ModelDynComponent[]> {
+
+    
+
     const arr = [
       new ModelDynComponent({
         id: 1,
@@ -37,21 +40,22 @@ export class FakeHttpDynControlsService {
       new ModelDynComponent({
         id: 3,
         name: 'date_three',
-        type: 'calendar',
-        label: 'Calendar three'
+        type: 'calendar_period',
+        label: 'Calendar with period',
+        defaultValue: [ toUTC(new Date()), addDays(new Date(), 7) ]
       }),
-      new ModelDynComponent({
-        id: 4,
-        name: 'date_four',
-        type: 'calendar',
-        label: 'Calendar four'
-      }),
-      new ModelDynComponent({
-        id: 5,
-        name: 'date_five',
-        type: 'calendar',
-        label: 'Calendar five'
-      }),
+      // new ModelDynComponent({
+      //   id: 4,
+      //   name: 'date_four',
+      //   type: 'calendar',
+      //   label: 'Calendar four'
+      // }),
+      // new ModelDynComponent({
+      //   id: 5,
+      //   name: 'date_five',
+      //   type: 'calendar',
+      //   label: 'Calendar five'
+      // }),
     ];
     return new Observable((o: Observer<ModelDynComponent[]>) => {
       setTimeout(() => {

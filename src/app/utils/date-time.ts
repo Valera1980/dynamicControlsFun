@@ -10,3 +10,7 @@ export function toLocal(date: string | Date | undefined): Date {
 export function toUTC(date: Date | string): string {
     return moment.utc(date).format('YYYY-MM-DD HH:mm:ss');
 }
+
+export function addDays(date: Date, interval: number): string {
+    return moment(date).add(interval, 'days').toString();
+}

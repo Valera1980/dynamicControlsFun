@@ -1,23 +1,23 @@
 import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
-import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-calendar-wrapper-val-accesor',
-  templateUrl: './calendar-wrapper-val-accesor.component.html',
-  styleUrls: ['./calendar-wrapper-val-accesor.component.scss'],
+  selector: 'app-period-wrapper-val-accesor',
+  templateUrl: './period-wrapper-val-accesor.component.html',
+  styleUrls: ['./period-wrapper-val-accesor.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CalendarWrapperValAccesorComponent),
+      useExisting: forwardRef(() => PeriodWrapperValAccesorComponent),
       multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper {
+export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper {
 
-  private _value: [Date, Date];
+  private _value: any;
   @Input() control: FormControl;
   @Input() label = 'none';
   @Input() defaultValue: any;
@@ -30,13 +30,14 @@ export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueA
   onTouch = (v: any) => { };
 
   // initialization
-  writeValue(obj: string | Date): void {
+  writeValue(obj: string[] | Date[]): void {
 
-    if (typeof obj === 'string') {
-      this.value = new Date(obj);
+    if (typeof obj[0] === 'string' && typeof obj[1] === 'string') {
+      this.value = [new Date(obj[0]), new Date(obj[1])];
     } else {
       this.value = obj;
     }
+
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;

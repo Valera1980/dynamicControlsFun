@@ -19,6 +19,15 @@
                     [label]="model.label">
                 </app-dropdown-wrapper-val-accesor>
             </div>
+
+             <!--DROPDOWN-->
+             <div *ngSwitchCase="dynTypes.CALENDAR_PERIOD">
+                <app-period-wrapper-val-accesor
+                    [control]="form.controls[model.name]"
+                    formControlName="{{model.name}}" 
+                    [label]="model.label">
+                </app-period-wrapper-val-accesor>
+            </div>
         </div>
     </div>
 </div>

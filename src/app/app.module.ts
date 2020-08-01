@@ -15,6 +15,7 @@ import { CalendarWrapperComponent } from './calendar-wrapper/calendar-wrapper.co
 import { DynComponentPlaceComponent } from './dyn-component-place/dyn-component-place.component';
 import { CalendarWrapperValAccesorComponent } from './calendar-wrapper-val-accesor/calendar-wrapper-val-accesor.component';
 import { DropdownWrapperValAccesorComponent } from './dropdown-wrapper-val-accesor/dropdown-wrapper-val-accesor.component';
+import { PeriodWrapperValAccesorComponent } from './period-wrapper-val-accesor/period-wrapper-val-accesor.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DropdownWrapperValAccesorComponent } from './dropdown-wrapper-val-acces
     CalendarWrapperComponent,
     DynComponentPlaceComponent,
     CalendarWrapperValAccesorComponent,
-    DropdownWrapperValAccesorComponent
+    DropdownWrapperValAccesorComponent,
+    PeriodWrapperValAccesorComponent
   ],
   imports: [
     BrowserModule,
