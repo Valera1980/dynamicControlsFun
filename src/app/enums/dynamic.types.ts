@@ -1,5 +1,6 @@
 
-export type TDynTypes = 'calendar';
+export type TDynTypes = 'calendar' | 'dropdown';
 export enum EnumDynTypes {
-    CALENDAR = 'calendar'
+    CALENDAR = 'calendar',
+    DROPDOWN = 'dropdown'
 }

@@ -1,50 +1,48 @@
 import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
 import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { SelectItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-calendar-wrapper-val-accesor',
-  templateUrl: './calendar-wrapper-val-accesor.component.html',
-  styleUrls: ['./calendar-wrapper-val-accesor.component.scss'],
+  selector: 'app-dropdown-wrapper-val-accesor',
+  templateUrl: './dropdown-wrapper-val-accesor.component.html',
+  styleUrls: ['./dropdown-wrapper-val-accesor.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CalendarWrapperValAccesorComponent),
+      useExisting: forwardRef(() => DropdownWrapperValAccesorComponent),
       multi: true
     }
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper {
+export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper {
 
   private _value: any;
+  @Input() label: string;
   @Input() control: FormControl;
-  @Input() label = 'none';
-  @Input() defaultValue: any;
+  @Input() options: SelectItem[];
 
   constructor() { }
 
-  ngOnInit(): void { }
+
+  ngOnInit(): void {
+  }
 
   onChange = (v: any) => { };
   onTouch = (v: any) => { };
 
-  // initialization
-  writeValue(obj: string | Date): void {
-    if (typeof obj === 'string') {
-      this.value = new Date(obj);
-    } else {
-      this.value = obj;
-    }
-  }
+  writeValue(v: any): void {
+    this._value = v;
+   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
-  setDisabledState?(isDisabled: boolean): void { }
-
+  setDisabledState?(isDisabled: boolean): void {
+  }
   set value(v: any) {
     this._value = v;
     this.onChange(v);
@@ -56,5 +54,4 @@ export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueA
   get dirty(): boolean {
     return this.control.dirty;
   }
-
 }

@@ -1,19 +1,34 @@
 import { TDynTypes } from './../enums/dynamic.types';
-
-export class ModelDynComponent {
+import { SelectItem } from 'primeng/api';
+export interface IDynComponent {
+    readonly defaultValue: any;
     readonly id: number;
+    readonly label: string;
     readonly name: string;
     readonly type: TDynTypes;
+    readonly options?: SelectItem[];
+}
+
+export class ModelDynComponent {
+    readonly defaultValue: any;
+    readonly id: number;
     readonly label: string;
+    readonly name: string;
+    readonly type: TDynTypes;
+    readonly options?: SelectItem[];
     constructor({
+        defaultValue = null,
         id = 0,
+        label = '',
         name = '',
         type = 'calendar',
-        label = ''
-    }: { id?: number, name?: string, type?: TDynTypes, label?: string } = {}) {
+        options = []
+    }: Partial<IDynComponent> = {}) {
+        this.defaultValue = defaultValue;
         this.id = id;
+        this.label = label;
         this.name = name;
         this.type = type;
-        this.label = label;
+        this.options = Array.isArray(options) ? options : [];
     }
 }

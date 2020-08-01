@@ -3,21 +3,20 @@
     <input formControlName="name">
     <input formControlName="email">
     <hr>
-    <!-- <div #domPlace></div> -->
-    <div [formGroup]="dynamic">
         <ng-container *ngIf="df?.length">
-            <div *ngFor="let model of df">
-                <app-calendar-wrapper-val-accesor 
-                    formControlName="{{model.name}}" 
-                    [label]="model.label">
-                </app-calendar-wrapper-val-accesor>
-            </div>
+            <app-dyn-component-place
+              [components]="df"
+              [form]="dynamic"
+              >
+            </app-dyn-component-place>
         </ng-container>
         <ng-container *ngIf="!df">
           <h2>Init dynamic fields .....</h2>
         </ng-container>
 
 
-    </div>
 
 </div>
+<!-- <app-calendar-wrapper-val-accesor [formControl]="dateControl" >
+
+</app-calendar-wrapper-val-accesor> -->

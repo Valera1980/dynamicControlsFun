@@ -3,10 +3,21 @@
         <div [ngSwitch]="model.type">
             <!--CALENDAR-->
             <div *ngSwitchCase="dynTypes.CALENDAR">
-                <app-calendar-wrapper-val-accesor 
+                <app-calendar-wrapper-val-accesor
+                    [control]="form.controls[model.name]"
                     formControlName="{{model.name}}" 
                     [label]="model.label">
                 </app-calendar-wrapper-val-accesor>
+            </div>
+            
+            <!--DROPDOWN-->
+            <div *ngSwitchCase="dynTypes.DROPDOWN">
+                <app-dropdown-wrapper-val-accesor
+                    [options]="model.options"
+                    [control]="form.controls[model.name]"
+                    formControlName="{{model.name}}" 
+                    [label]="model.label">
+                </app-dropdown-wrapper-val-accesor>
             </div>
         </div>
     </div>

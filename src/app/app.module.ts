@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -12,6 +14,7 @@ import { ReactFormComponent } from './react-form/react-form.component';
 import { CalendarWrapperComponent } from './calendar-wrapper/calendar-wrapper.component';
 import { DynComponentPlaceComponent } from './dyn-component-place/dyn-component-place.component';
 import { CalendarWrapperValAccesorComponent } from './calendar-wrapper-val-accesor/calendar-wrapper-val-accesor.component';
+import { DropdownWrapperValAccesorComponent } from './dropdown-wrapper-val-accesor/dropdown-wrapper-val-accesor.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { CalendarWrapperValAccesorComponent } from './calendar-wrapper-val-acces
     ReactFormComponent,
     CalendarWrapperComponent,
     DynComponentPlaceComponent,
-    CalendarWrapperValAccesorComponent
+    CalendarWrapperValAccesorComponent,
+    DropdownWrapperValAccesorComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,8 @@ import { CalendarWrapperValAccesorComponent } from './calendar-wrapper-val-acces
     ReactiveFormsModule,
     CalendarModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

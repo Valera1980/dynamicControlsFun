@@ -1,8 +1,9 @@
 import { ModelDynComponent } from './../models/dyn-component.model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { GenerateControlsService } from '../services/generate-controls/generate-controls.service';
 import { Component, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-react-form',
@@ -14,8 +15,11 @@ export class ReactFormComponent implements OnInit {
 
   @ViewChild('domPlace', { read: ViewContainerRef, static: true }) domPlace: ViewContainerRef;
 
+  dateControl = new FormControl();
+
   dynFieldsIsReady = false;
   df: ModelDynComponent[];
+  init = true;
 
   form: FormGroup;
   constructor(
@@ -36,12 +40,19 @@ export class ReactFormComponent implements OnInit {
     this._genControl.generate(this.dynamic, this.domPlace)
       .subscribe((df) => {
         this.df = df;
+        this.init = false;
         this._cd.detectChanges();
       });
 
     this.form.valueChanges
+      .pipe(filter(() => !this.init))
       .subscribe(data => {
         console.log(data);
+      });
+
+    this.dateControl.valueChanges
+      .subscribe(d => {
+        console.log(d);
       });
   }
 
