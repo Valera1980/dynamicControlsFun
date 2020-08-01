@@ -13,9 +13,6 @@ export class FakeHttpDynControlsService {
   constructor() { }
 
   queryControls(): Observable<ModelDynComponent[]> {
-
-    
-
     const arr = [
       new ModelDynComponent({
         id: 1,
@@ -24,11 +21,11 @@ export class FakeHttpDynControlsService {
         label: 'city',
         defaultValue: null,
         options: [{ label: 'Select City', value: null },
-                  { label: 'New York', value: 1 },
-                  { label: 'Rome', value: 2 },
-                  { label: 'London', value: 3 },
-                  { label: 'Istanbul', value: 4 },
-                  { label: 'Paris', value: 5 }]
+        { label: 'New York', value: 1 },
+        { label: 'Rome', value: 2 },
+        { label: 'London', value: 3 },
+        { label: 'Istanbul', value: 4 },
+        { label: 'Paris', value: 5 }]
       }),
       new ModelDynComponent({
         id: 2,
@@ -42,7 +39,7 @@ export class FakeHttpDynControlsService {
         name: 'date_three',
         type: 'calendar_period',
         label: 'Calendar with period',
-        defaultValue: [ toUTC(new Date()), addDays(new Date(), 7) ]
+        defaultValue: [toUTC(new Date()), addDays(new Date(), 7)]
       }),
       // new ModelDynComponent({
       //   id: 4,
