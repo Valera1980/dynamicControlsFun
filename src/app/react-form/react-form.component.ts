@@ -1,9 +1,9 @@
 import { ModelDynComponent } from './../models/dyn-component.model';
-import { Observable, Subject } from 'rxjs';
 import { GenerateControlsService } from '../services/generate-controls/generate-controls.service';
 import { Component, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { filter } from 'rxjs/operators';
+import { setCustomFieldsAsDirty } from '../utils/cf';
 
 @Component({
   selector: 'app-react-form',
@@ -58,6 +58,10 @@ export class ReactFormComponent implements OnInit {
 
   get dynamic(): FormGroup {
     return this.form.get('dynamic') as FormGroup;
+  }
+  save(): void {
+    setCustomFieldsAsDirty(this.form);
+    this._cd.detectChanges();
   }
 
 }

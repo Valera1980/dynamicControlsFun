@@ -1,5 +1,5 @@
 import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
-import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 
 @Component({
@@ -15,16 +15,23 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/f
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper {
+export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper, OnChanges {
 
   private _value: [Date, Date];
   @Input() control: FormControl;
   @Input() label = 'none';
   @Input() defaultValue: any;
+  @Input() outsideDirty: boolean;
 
   constructor() { }
-
+  
   ngOnInit(): void { }
+
+  ngOnChanges({outsideDirty}: SimpleChanges): void {
+    if (outsideDirty.currentValue === true) {
+      this.control.markAsDirty();
+    }
+  } 
 
   onChange = (v: any) => { };
   onTouch = (v: any) => { };
@@ -57,5 +64,10 @@ export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueA
   get dirty(): boolean {
     return this.control.dirty;
   }
-
+  isRequired(): boolean {
+    return this.control.errors && this.control.errors.required;
+  }
+  isValid(): boolean {
+    return !this.control.errors;
+  }
 }

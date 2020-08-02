@@ -5,4 +5,6 @@ export interface ICfComponentWrapper {
     label: string;
     control: FormControl;
     options?: SelectItem[];
+    outsideDirty: boolean;
+    isRequired(): boolean;
 }

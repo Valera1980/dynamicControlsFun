@@ -1,6 +1,6 @@
 import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
-import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 
 @Component({
@@ -16,17 +16,24 @@ import { SelectItem } from 'primeng/api';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper {
+export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper, OnChanges {
 
-  private _value: any;
+  private _value: number;
   @Input() label: string;
   @Input() control: FormControl;
   @Input() options: SelectItem[];
+  @Input() outsideDirty: boolean;
 
   constructor() { }
 
-
   ngOnInit(): void {
+
+  }
+  
+  ngOnChanges({ outsideDirty }: SimpleChanges): void {
+    if (outsideDirty.currentValue === true) {
+      this.control.markAsDirty();
+    }
   }
 
   onChange = (v: any) => { };
@@ -34,7 +41,7 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
 
   writeValue(v: any): void {
     this._value = v;
-   }
+  }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -43,15 +50,24 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
   }
   setDisabledState?(isDisabled: boolean): void {
   }
-  set value(v: any) {
+  set value(v: number) {
     this._value = v;
     this.onChange(v);
     this.onTouch(v);
   }
-  get value(): any {
+  get value(): number {
     return this._value;
   }
   get dirty(): boolean {
     return this.control.dirty;
+  }
+  get touched(): boolean {
+    return this.control.touched;
+  }
+  isRequired(): boolean {
+    return this.control.errors && this.control.errors.required;
+  }
+  isValid(): boolean {
+    return !this.control.errors;
   }
 }

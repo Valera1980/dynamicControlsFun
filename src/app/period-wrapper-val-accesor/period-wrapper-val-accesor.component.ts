@@ -1,6 +1,6 @@
 import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-period-wrapper-val-accesor',
@@ -15,16 +15,23 @@ import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy } from '@
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper {
+export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAccessor, ICfComponentWrapper, OnChanges {
 
   private _value: any;
   @Input() control: FormControl;
   @Input() label = 'none';
   @Input() defaultValue: any;
+  @Input() outsideDirty: boolean;
 
   constructor() { }
 
   ngOnInit(): void { }
+
+  ngOnChanges({ outsideDirty }: SimpleChanges): void {
+    if (outsideDirty.currentValue === true) {
+      this.control.markAsDirty();
+    }
+  }
 
   onChange = (v: any) => { };
   onTouch = (v: any) => { };
@@ -58,5 +65,10 @@ export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAcc
   get dirty(): boolean {
     return this.control.dirty;
   }
-
+  isRequired(): boolean {
+    return this.control.errors && this.control.errors.required;
+  }
+  isValid(): boolean {
+    return !this.control.errors;
+  }
 }

@@ -8,8 +8,6 @@ import { toUTC, addDays } from 'src/app/utils/date-time';
 })
 export class FakeHttpDynControlsService {
 
-  df$ = new ReplaySubject<ModelDynComponent[]>(1);
-
   constructor() { }
 
   queryControls(): Observable<ModelDynComponent[]> {
@@ -25,7 +23,8 @@ export class FakeHttpDynControlsService {
         { label: 'Rome', value: 2 },
         { label: 'London', value: 3 },
         { label: 'Istanbul', value: 4 },
-        { label: 'Paris', value: 5 }]
+        { label: 'Paris', value: 5 }],
+        isRequired: true
       }),
       new ModelDynComponent({
         id: 2,
@@ -41,12 +40,13 @@ export class FakeHttpDynControlsService {
         label: 'Calendar with period',
         defaultValue: [toUTC(new Date()), addDays(new Date(), 7)]
       }),
-      // new ModelDynComponent({
-      //   id: 4,
-      //   name: 'date_four',
-      //   type: 'calendar',
-      //   label: 'Calendar four'
-      // }),
+      new ModelDynComponent({
+        id: 4,
+        name: 'date_four',
+        type: 'calendar',
+        label: 'Calendar four',
+        isRequired: true
+      }),
       // new ModelDynComponent({
       //   id: 5,
       //   name: 'date_five',

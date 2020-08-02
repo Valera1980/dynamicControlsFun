@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ButtonModule } from 'primeng/button';
 
 import { FormsModule } from '@angular/forms';
 
@@ -36,7 +37,8 @@ import { PeriodWrapperValAccesorComponent } from './period-wrapper-val-accesor/p
     BrowserAnimationsModule,
     FormsModule,
     DropdownModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
