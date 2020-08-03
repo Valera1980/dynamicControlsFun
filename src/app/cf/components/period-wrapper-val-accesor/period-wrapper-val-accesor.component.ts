@@ -1,3 +1,4 @@
+import { IValidator } from './../../models/validator.model';
 import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
@@ -22,7 +23,7 @@ export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAcc
   @Input() label = 'none';
   @Input() defaultValue: any;
   @Input() outsideDirty: boolean;
-
+  @Input() validators: IValidator[];
   constructor() { }
 
   ngOnInit(): void { }
@@ -70,5 +71,12 @@ export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAcc
   }
   isValid(): boolean {
     return !this.control.errors;
+  }
+  getError(): string {
+    if (this.control.errors) {
+      const [first] = Object.keys(this.control.errors);
+      return this.validators[0].message;
+    }
+    return '';
   }
 }

@@ -8,8 +8,7 @@ export interface IDynComponent {
     readonly name: string;
     readonly type: TDynTypes;
     readonly options?: SelectItem[];
-    // readonly isRequired: boolean;
-    readonly validators: IValidator;
+    readonly validators: IValidator[];
 }
 
 export class ModelDynComponent implements IDynComponent {
@@ -19,8 +18,7 @@ export class ModelDynComponent implements IDynComponent {
     readonly name: string;
     readonly type: TDynTypes;
     readonly options?: SelectItem[];
-    // readonly isRequired: boolean;
-    readonly validators: IValidator;
+    readonly validators: IValidator[];
     constructor({
         defaultValue = null,
         id = 0,
@@ -28,8 +26,7 @@ export class ModelDynComponent implements IDynComponent {
         name = '',
         type = 'calendar',
         options = [],
-        // isRequired = false,
-        validators = null
+        validators = []
     }: Partial<IDynComponent> = {}) {
         this.defaultValue = defaultValue;
         this.id = id;
@@ -37,7 +34,6 @@ export class ModelDynComponent implements IDynComponent {
         this.name = name;
         this.type = type;
         this.options = Array.isArray(options) ? options : [];
-        // this.isRequired = isRequired;
         this.validators = validators;
     }
 }

@@ -1,6 +1,7 @@
+import { IValidator } from './../../models/validator.model';
 import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
 import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-calendar-wrapper-val-accesor',
@@ -22,12 +23,13 @@ export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueA
   @Input() label = 'none';
   @Input() defaultValue: any;
   @Input() outsideDirty: boolean;
+  @Input() validators: IValidator[];
 
   constructor() { }
 
   ngOnInit(): void { }
 
-  ngOnChanges({outsideDirty}: SimpleChanges): void {
+  ngOnChanges({ outsideDirty }: SimpleChanges): void {
     if (outsideDirty.currentValue === true) {
       this.control.markAsDirty();
     }
@@ -69,5 +71,13 @@ export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueA
   }
   isValid(): boolean {
     return !this.control.errors;
+  }
+  getError(): string {
+    if (this.control.errors) {
+      const [first] = Object.keys(this.control.errors);
+      const validator = this.validators.find(v => v.type === first);
+      return validator.message;
+    }
+    return '';
   }
 }

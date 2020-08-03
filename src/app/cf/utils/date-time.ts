@@ -14,3 +14,6 @@ export function toUTC(date: Date | string): string {
 export function addDays(date: Date, interval: number): string {
     return moment(date).add(interval, 'days').toString();
 }
+export function isBefore(dateNow: Date | string, dateCompare: Date | string): boolean {
+    return moment(dateCompare).isBefore(dateNow);
+}

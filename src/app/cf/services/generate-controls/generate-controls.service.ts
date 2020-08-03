@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Injectable, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { minDateValidator } from '../../validators/min-date.validator';
 
 @Injectable({
   providedIn: 'root'
@@ -29,20 +30,27 @@ export class GenerateControlsService {
       );
   }
   private _addValidators(control: FormControl, m: ModelDynComponent): FormControl {
-    if (!m.validators) {
+    if (!m.validators.length) {
       return control;
     }
-    switch (m.validators.type) {
-      case 'required':
-        control.setValidators(Validators.required);
-        break;
-      case 'min':
-        control.setValidators(Validators.min(m.validators.value));
-        break;
-      default:
-        break;
-    }
+    const validators = [];
+    for (const v of m.validators) {
 
+      switch (v.type) {
+        case 'required':
+          validators.push(Validators.required);
+          break;
+        case 'min':
+          validators.push(Validators.min(v.value));
+          break;
+        case 'minDate':
+          validators.push(minDateValidator(v.value));
+          break;
+        default:
+          break;
+      }
+    }
+    control.setValidators(validators);
     return control;
   }
 }

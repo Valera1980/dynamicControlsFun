@@ -1,3 +1,4 @@
+import { IValidator } from './../../models/validator.model';
 import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
 import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
@@ -23,6 +24,7 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
   @Input() control: FormControl;
   @Input() options: SelectItem[];
   @Input() outsideDirty: boolean;
+  @Input() validators: IValidator[];
 
   constructor() { }
 
@@ -68,5 +70,12 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
   }
   isValid(): boolean {
     return !this.control.errors;
+  }
+  getError(): string {
+    if (this.control.errors) {
+      const [first] = Object.keys(this.control.errors);
+      return this.validators[0].message;
+    }
+    return '';
   }
 }

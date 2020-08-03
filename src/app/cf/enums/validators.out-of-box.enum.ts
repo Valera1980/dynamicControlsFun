@@ -7,4 +7,5 @@ export type TValidators = 'min'
     | 'maxLength'
     | 'pattern'
     | 'nullValidator'
-    | 'compose'; // ???
+    | 'compose' // ???
+    | 'minDate';

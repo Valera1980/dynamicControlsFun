@@ -4,6 +4,7 @@
             <!--CALENDAR-->
             <div *ngSwitchCase="dynTypes.CALENDAR">
                 <app-calendar-wrapper-val-accesor
+                    [validators]="model.validators"
                     [outsideDirty]="form.controls[model.name].dirty"
                     [control]="form.controls[model.name]"
                     formControlName="{{model.name}}" 
@@ -17,6 +18,7 @@
             <div *ngSwitchCase="dynTypes.DROPDOWN">
 
                 <app-dropdown-wrapper-val-accesor 
+                    [validators]="model.validators"
                     [outsideDirty]="form.controls[model.name].dirty"
                     [options]="model.options"
                     [control]="form.controls[model.name]"
@@ -28,6 +30,7 @@
              <!--CALENDAR period-->
              <div *ngSwitchCase="dynTypes.CALENDAR_PERIOD">
                 <app-period-wrapper-val-accesor
+                    [validators]="model.validators"
                     [outsideDirty]="form.controls[model.name].dirty"
                     [control]="form.controls[model.name]"
                     formControlName="{{model.name}}" 

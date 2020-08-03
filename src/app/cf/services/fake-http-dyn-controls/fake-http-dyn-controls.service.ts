@@ -1,7 +1,7 @@
 import { ModelDynComponent } from './../../models/dyn-component.model';
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-import { toLocal, toUTC , addDays} from '../../utils/date-time';
+import { toLocal, toUTC, addDays } from '../../utils/date-time';
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +24,14 @@ export class FakeHttpDynControlsService {
         { label: 'London', value: 3 },
         { label: 'Istanbul', value: 4 },
         { label: 'Paris', value: 5 }],
-        validators: { type: 'required', value: null, message: 'this required field' }
+        validators: [{ type: 'required', value: null, message: 'This is required field' }]
       }),
       new ModelDynComponent({
         id: 2,
         name: 'date_two',
         type: 'calendar',
         label: 'Calendar two',
-        defaultValue: toUTC(new Date()),
-        validators: { type: 'min', value: new Date(), message: 'min validation fail' }
+        defaultValue: toUTC(new Date())
       }),
       new ModelDynComponent({
         id: 3,
@@ -46,6 +45,11 @@ export class FakeHttpDynControlsService {
         name: 'date_four',
         type: 'calendar',
         label: 'Calendar four',
+        validators: [
+          { type: 'required', value: null, message: 'This is required field' },
+          { type: 'minDate', value: new Date(), message: 'min validation fail' }
+        ],
+        defaultValue: new Date()
       }),
       // new ModelDynComponent({
       //   id: 5,
