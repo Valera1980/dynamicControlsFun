@@ -29,7 +29,6 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
   ngOnInit(): void {
 
   }
-  
   ngOnChanges({ outsideDirty }: SimpleChanges): void {
     if (outsideDirty.currentValue === true) {
       this.control.markAsDirty();
