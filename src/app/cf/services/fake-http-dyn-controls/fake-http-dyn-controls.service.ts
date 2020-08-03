@@ -45,7 +45,7 @@ export class FakeHttpDynControlsService {
         defaultValue: [toUTC(new Date()), addDays(new Date(), 7)],
         validators: [
           { type: 'required', value: null, message: 'This is required field' },
-          { type: 'betweenDate', value: [toUTC(new Date()), addDays(new Date(), 6)], message: 'min validation fail' }
+          { type: 'betweenDate', value: [toUTC(new Date()), addDays(new Date(), 6)], message: 'between validation fail' }
         ],
       }),
       new ModelDynComponent({

@@ -74,7 +74,8 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
   getError(): string {
     if (this.control.errors) {
       const [first] = Object.keys(this.control.errors);
-      return this.validators[0].message;
+      const validator = this.validators.find(v => v.type === first);
+      return validator.message;
     }
     return '';
   }
