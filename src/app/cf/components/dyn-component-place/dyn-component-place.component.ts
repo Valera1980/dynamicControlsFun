@@ -1,7 +1,7 @@
-import { EnumDynTypes } from './../enums/dynamic.types';
 import { FormGroup } from '@angular/forms';
-import { ModelDynComponent } from './../models/dyn-component.model';
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { ModelDynComponent } from '../../models/dyn-component.model';
+import { EnumDynTypes } from '../../enums/dynamic.types';
 
 @Component({
   selector: 'app-dyn-component-place',

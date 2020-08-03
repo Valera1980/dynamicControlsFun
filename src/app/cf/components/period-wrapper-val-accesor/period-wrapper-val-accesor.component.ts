@@ -1,4 +1,4 @@
-import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
+import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 

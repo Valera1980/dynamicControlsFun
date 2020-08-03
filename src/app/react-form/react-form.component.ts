@@ -1,9 +1,9 @@
-import { ModelDynComponent } from './../models/dyn-component.model';
-import { GenerateControlsService } from '../services/generate-controls/generate-controls.service';
+import { GenerateControlsService } from './../cf/services/generate-controls/generate-controls.service';
+import { ModelDynComponent } from './../cf/models/dyn-component.model';
 import { Component, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { filter } from 'rxjs/operators';
-import { setCustomFieldsAsDirty } from '../utils/cf';
+import { setCustomFieldsAsDirty } from '../cf/utils/cf';
 
 @Component({
   selector: 'app-react-form',

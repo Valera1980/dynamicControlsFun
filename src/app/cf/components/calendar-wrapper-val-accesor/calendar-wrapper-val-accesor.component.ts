@@ -1,4 +1,4 @@
-import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
+import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
 import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 
@@ -24,14 +24,14 @@ export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueA
   @Input() outsideDirty: boolean;
 
   constructor() { }
-  
+
   ngOnInit(): void { }
 
   ngOnChanges({outsideDirty}: SimpleChanges): void {
     if (outsideDirty.currentValue === true) {
       this.control.markAsDirty();
     }
-  } 
+  }
 
   onChange = (v: any) => { };
   onTouch = (v: any) => { };

@@ -1,6 +1,6 @@
-import { ICfComponentWrapper } from './../models/custom-field.component.intreface';
-import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl, Validators } from '@angular/forms';
+import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
+import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 
 @Component({
