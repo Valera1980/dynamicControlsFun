@@ -24,14 +24,15 @@ export class FakeHttpDynControlsService {
         { label: 'London', value: 3 },
         { label: 'Istanbul', value: 4 },
         { label: 'Paris', value: 5 }],
-        isRequired: true
+        validators: { type: 'required', value: null, message: 'this required field' }
       }),
       new ModelDynComponent({
         id: 2,
         name: 'date_two',
         type: 'calendar',
         label: 'Calendar two',
-        defaultValue: toUTC(new Date())
+        defaultValue: toUTC(new Date()),
+        validators: { type: 'min', value: new Date(), message: 'min validation fail' }
       }),
       new ModelDynComponent({
         id: 3,
@@ -45,7 +46,6 @@ export class FakeHttpDynControlsService {
         name: 'date_four',
         type: 'calendar',
         label: 'Calendar four',
-        isRequired: true
       }),
       // new ModelDynComponent({
       //   id: 5,

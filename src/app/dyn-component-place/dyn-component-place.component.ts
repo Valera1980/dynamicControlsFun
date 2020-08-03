@@ -7,7 +7,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
   selector: 'app-dyn-component-place',
   templateUrl: './dyn-component-place.component.html',
   styleUrls: ['./dyn-component-place.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynComponentPlaceComponent implements OnInit {
 

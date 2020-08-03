@@ -22,17 +22,27 @@ export class GenerateControlsService {
           for (const model of df) {
             const newFc = new FormControl(model.defaultValue);
             const newFcWithValidators = this._addValidators(newFc, model);
-            formInstance.addControl(model.name, newFc);
+            formInstance.addControl(model.name, newFcWithValidators);
           }
           return df;
         })
       );
   }
   private _addValidators(control: FormControl, m: ModelDynComponent): FormControl {
-    if (!m.isRequired) {
+    if (!m.validators) {
       return control;
     }
-    control.setValidators(Validators.required);
+    switch (m.validators.type) {
+      case 'required':
+        control.setValidators(Validators.required);
+        break;
+      case 'min':
+        control.setValidators(Validators.min(m.validators.value));
+        break;
+      default:
+        break;
+    }
+
     return control;
   }
 }
