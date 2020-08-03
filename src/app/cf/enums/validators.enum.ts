@@ -7,5 +7,8 @@ export type TValidators = 'min'
     | 'maxLength'
     | 'pattern'
     | 'nullValidator'
-    | 'compose' // ???
-    | 'minDate';
+    | 'compose'
+    // end out of box validators
+    | 'minDate'
+    | 'maxDate'
+    | 'betweenDate';

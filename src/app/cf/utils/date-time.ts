@@ -17,3 +17,6 @@ export function addDays(date: Date, interval: number): string {
 export function isBefore(dateNow: Date | string, dateCompare: Date | string): boolean {
     return moment(dateCompare).isBefore(dateNow);
 }
+export function isAfter(dateNow: Date | string, dateCompare: Date | string): boolean {
+    return moment(dateCompare).isAfter(dateNow);
+}

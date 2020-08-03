@@ -8,5 +8,5 @@ export interface ICfComponentWrapper {
     options?: SelectItem[];
     outsideDirty: boolean;
     validators: IValidator[];
-    isRequired(): boolean;
+    isRequired(): boolean; // наверное уже не нужен, так как  есть валидатор required
 }

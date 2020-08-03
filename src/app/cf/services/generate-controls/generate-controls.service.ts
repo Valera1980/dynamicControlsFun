@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Injectable, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { minDateValidator } from '../../validators/min-date.validator';
+import { maxDateValidator } from '../../validators/max-date.validator';
+import { betweenDateValidator } from '../../validators/between-date.validator';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,12 @@ export class GenerateControlsService {
           break;
         case 'minDate':
           validators.push(minDateValidator(v.value));
+          break;
+        case 'maxDate':
+          validators.push(maxDateValidator(v.value));
+          break;
+        case 'betweenDate':
+          validators.push(betweenDateValidator(v.value));
           break;
         default:
           break;

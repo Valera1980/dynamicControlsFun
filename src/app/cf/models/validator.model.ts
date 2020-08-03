@@ -1,4 +1,4 @@
-import { TValidators } from './../enums/validators.out-of-box.enum';
+import { TValidators } from '../enums/validators.enum';
 export interface IValidator {
     type: TValidators;
     value: any;

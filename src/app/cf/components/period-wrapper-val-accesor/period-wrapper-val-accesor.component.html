@@ -1,4 +1,4 @@
 <p>{{label}} <span *ngIf="isRequired()"> *</span></p>
 <p-calendar [(ngModel)]="value" [showTime]="true" [selectionMode]="'range'" [inputStyle]="{'width':'400px'}"></p-calendar>
-<h4>is ditry: {{dirty}}</h4>
-<p class="error-msg" *ngIf="dirty && !isValid()">ошибка валидации</p>
+<h4>is dirty: {{dirty}}</h4>
+<p class="error-msg" *ngIf="dirty && !isValid()">{{getError() | json}}</p>

@@ -31,14 +31,22 @@ export class FakeHttpDynControlsService {
         name: 'date_two',
         type: 'calendar',
         label: 'Calendar two',
-        defaultValue: toUTC(new Date())
+        defaultValue: toUTC(new Date()),
+        validators: [
+          { type: 'required', value: null, message: 'This is required field' },
+          { type: 'maxDate', value: new Date(), message: 'Max date validation error' }
+        ]
       }),
       new ModelDynComponent({
         id: 3,
         name: 'date_three',
         type: 'calendar_period',
         label: 'Calendar with period',
-        defaultValue: [toUTC(new Date()), addDays(new Date(), 7)]
+        defaultValue: [toUTC(new Date()), addDays(new Date(), 7)],
+        validators: [
+          { type: 'required', value: null, message: 'This is required field' },
+          { type: 'betweenDate', value: [toUTC(new Date()), addDays(new Date(), 6)], message: 'min validation fail' }
+        ],
       }),
       new ModelDynComponent({
         id: 4,

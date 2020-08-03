@@ -1,4 +1,4 @@
 <p>{{label}} <span *ngIf="isRequired()"> *</span></p>
 <p-dropdown [options]="options" [(ngModel)]="value" [style]="{'width':'400px'}" ></p-dropdown>
-<h4>is ditry: {{dirty}}</h4>
+<h4>is dirty: {{dirty}}</h4>
 <p class="error-msg" *ngIf="dirty && !isValid()">{{getError() | json}}</p>
