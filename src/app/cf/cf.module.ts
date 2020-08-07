@@ -9,6 +9,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
+import { AdressWrapperValAccesorComponent } from './components/adress-wrapper-val-accesor/adress-wrapper-val-accesor.component';
 
 
 
@@ -17,7 +18,8 @@ import { ButtonModule } from 'primeng/button';
     CalendarWrapperValAccesorComponent,
     DropdownWrapperValAccesorComponent,
     PeriodWrapperValAccesorComponent,
-    DynComponentPlaceComponent
+    DynComponentPlaceComponent,
+    AdressWrapperValAccesorComponent
   ],
   imports: [
     CommonModule,
