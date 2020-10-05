@@ -1,3 +1,4 @@
+import { FakeHttpDynControlsService } from './../cf/services/fake-http-dyn-controls/fake-http-dyn-controls.service';
 import { GenerateControlsService } from './../cf/services/generate-controls/generate-controls.service';
 import { ModelDynComponent } from './../cf/models/dyn-component.model';
 import { Component, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
@@ -12,7 +13,7 @@ import { DialogService } from 'primeng/dynamicdialog';
   templateUrl: './react-form.component.html',
   styleUrls: ['./react-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ DialogService ]
+  providers: [DialogService]
 })
 export class ReactFormComponent implements OnInit {
 
@@ -29,7 +30,8 @@ export class ReactFormComponent implements OnInit {
     private _fb: FormBuilder,
     private _genControl: GenerateControlsService,
     private _cd: ChangeDetectorRef,
-    private _openModal: OpenModalCfService
+    private _openModal: OpenModalCfService,
+    private _fakeHttp: FakeHttpDynControlsService
   ) { }
 
   ngOnInit(): void {
@@ -50,14 +52,15 @@ export class ReactFormComponent implements OnInit {
 
     this.form.valueChanges
       .pipe(filter(() => !this.init))
-      .subscribe(data => {
-        console.log(data);
-      });
-
-    this.dateControl.valueChanges
       .subscribe(d => {
         console.log(d);
+        // this._cd.detectChanges();
       });
+
+    // this.dateControl.valueChanges
+    //   .subscribe(d => {
+    //     console.log(d);
+    //   });
   }
 
   get dynamic(): FormGroup {
@@ -68,7 +71,19 @@ export class ReactFormComponent implements OnInit {
     this._cd.detectChanges();
   }
   createNewCf(): void {
-     this._openModal.add();
+    const ref = this._openModal.add();
+    // listen close result
+    ref.onClose
+      .pipe(filter(d => !!d))
+      .subscribe(d => {
+         const m = new ModelDynComponent({
+           id: 10,
+           name: d.name,
+           label: d.label,
+           sourceCode: d.sourceCode
+         });
+         this._fakeHttp.addControl(m);
+      });
   }
 
 }

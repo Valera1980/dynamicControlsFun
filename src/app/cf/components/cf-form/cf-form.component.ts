@@ -1,3 +1,5 @@
+import { FakeHttpDynControlsService } from './../../services/fake-http-dyn-controls/fake-http-dyn-controls.service';
+import { ModelDynComponent } from './../../models/dyn-component.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -22,7 +24,8 @@ export class CfFormComponent implements OnInit {
   form: FormGroup;
   constructor(
     private _fb: FormBuilder,
-    private _ref: DynamicDialogRef
+    private _ref: DynamicDialogRef,
+    private _fakeHttp: FakeHttpDynControlsService
   ) { }
 
   ngOnInit(): void {
@@ -30,15 +33,17 @@ export class CfFormComponent implements OnInit {
       name: [''],
       type: ['calendar'],
       label: [''],
-      sourceCode: ['function x() {\nconsole.log("Hello world!");\n}']
+      sourceCode: ['const [form, ref] = [...arguments];form.patchValue({"city_one":3});']
     });
+
     this.form.valueChanges
       .subscribe(d => {
         // console.log(d);
+
       });
   }
   save(): void {
-     this._ref.close(this.form.value);
+    this._ref.close(this.form.value);
   }
   cancel(): void {
     this._ref.close();

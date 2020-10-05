@@ -1,6 +1,6 @@
 import { IValidator } from './../../models/validator.model';
 import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
-import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 
@@ -26,7 +26,7 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
   @Input() outsideDirty: boolean;
   @Input() validators: IValidator[];
 
-  constructor() { }
+  constructor(private _cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -42,6 +42,8 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
 
   writeValue(v: any): void {
     this._value = v;
+    this._cd.detectChanges();
+
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -55,6 +57,8 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
     this._value = v;
     this.onChange(v);
     this.onTouch(v);
+    this._cd.detectChanges();
+
   }
   get value(): number {
     return this._value;
