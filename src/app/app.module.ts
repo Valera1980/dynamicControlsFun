@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactFormComponent } from './react-form/react-form.component';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ReactFormComponent } from './react-form/react-form.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CfModule
+    CfModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

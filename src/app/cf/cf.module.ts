@@ -10,6 +10,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
 import { AdressWrapperValAccesorComponent } from './components/adress-wrapper-val-accesor/adress-wrapper-val-accesor.component';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { OpenModalCfService } from './services/open-modal-cf/open-modal-cf.service';
+import { CfFormComponent } from './components/cf-form/cf-form.component';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 
 
@@ -19,7 +23,8 @@ import { AdressWrapperValAccesorComponent } from './components/adress-wrapper-va
     DropdownWrapperValAccesorComponent,
     PeriodWrapperValAccesorComponent,
     DynComponentPlaceComponent,
-    AdressWrapperValAccesorComponent
+    AdressWrapperValAccesorComponent,
+    CfFormComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +33,9 @@ import { AdressWrapperValAccesorComponent } from './components/adress-wrapper-va
     FormsModule,
     DropdownModule,
     ProgressSpinnerModule,
-    ButtonModule
+    ButtonModule,
+    DynamicDialogModule,
+    MonacoEditorModule.forRoot()
   ],
   exports: [
     CalendarWrapperValAccesorComponent,
@@ -40,7 +47,12 @@ import { AdressWrapperValAccesorComponent } from './components/adress-wrapper-va
     FormsModule,
     DropdownModule,
     ProgressSpinnerModule,
-    ButtonModule
+    ButtonModule,
+    // MonacoEditorModule
+  ],
+  providers: [
+    OpenModalCfService,
+    DialogService
   ]
 })
 export class CfModule { }

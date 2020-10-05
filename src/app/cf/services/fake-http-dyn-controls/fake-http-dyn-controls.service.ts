@@ -8,10 +8,9 @@ import { toLocal, toUTC, addDays } from '../../utils/date-time';
 })
 export class FakeHttpDynControlsService {
 
-  constructor() { }
-
-  queryControls(): Observable<ModelDynComponent[]> {
-    const arr = [
+  controls: ModelDynComponent[];
+  constructor() {
+    this.controls = [
       new ModelDynComponent({
         id: 1,
         name: 'city_one',
@@ -58,19 +57,15 @@ export class FakeHttpDynControlsService {
           { type: 'minDate', value: new Date(), message: 'min validation fail' }
         ],
         defaultValue: new Date()
-      }),
-      // new ModelDynComponent({
-      //   id: 5,
-      //   name: 'date_five',
-      //   type: 'calendar',
-      //   label: 'Calendar five'
-      // }),
-    ];
+      })];
+  }
+
+  queryControls(): Observable<ModelDynComponent[]> {
     return new Observable((o: Observer<ModelDynComponent[]>) => {
       setTimeout(() => {
-        o.next(arr);
+        o.next(this.controls);
         o.complete();
-      }, 2000);
+      }, 500);
     });
   }
 }

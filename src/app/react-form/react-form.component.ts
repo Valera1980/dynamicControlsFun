@@ -4,12 +4,15 @@ import { Component, OnInit, ViewChild, ViewContainerRef, ChangeDetectionStrategy
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 import { setCustomFieldsAsDirty } from '../cf/utils/cf';
+import { OpenModalCfService } from '../cf/services/open-modal-cf/open-modal-cf.service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-react-form',
   templateUrl: './react-form.component.html',
   styleUrls: ['./react-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ DialogService ]
 })
 export class ReactFormComponent implements OnInit {
 
@@ -25,7 +28,8 @@ export class ReactFormComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _genControl: GenerateControlsService,
-    private _cd: ChangeDetectorRef
+    private _cd: ChangeDetectorRef,
+    private _openModal: OpenModalCfService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +66,9 @@ export class ReactFormComponent implements OnInit {
   save(): void {
     setCustomFieldsAsDirty(this.form);
     this._cd.detectChanges();
+  }
+  createNewCf(): void {
+     this._openModal.add();
   }
 
 }

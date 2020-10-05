@@ -2,3 +2,8 @@
 .error-msg {
      color: #e01313;
 }
+.my-code-editor {
+     .editor-container {
+       height: calc(100vh - 100px);
+     }
+   }
