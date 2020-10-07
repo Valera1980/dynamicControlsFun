@@ -1,8 +1,11 @@
-<div [formGroup]="form">
+<div [formGroup]="form" class="container">
     <div *ngFor="let model of components">
         <div [ngSwitch]="model.type">
             <!--CALENDAR-->
-            <div *ngSwitchCase="dynTypes.CALENDAR">
+            <div *ngSwitchCase="dynTypes.CALENDAR" class="control-wrapper">
+                <div class="control-wrapper__edit-icon">
+                    <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
+                </div>
                 <app-calendar-wrapper-val-accesor
                     [validators]="model.validators"
                     [outsideDirty]="form.controls[model.name].dirty"
@@ -12,11 +15,15 @@
                 </app-calendar-wrapper-val-accesor>
             </div>
             
+
+            
             <!--DROPDOWN-->
 
 
-            <div *ngSwitchCase="dynTypes.DROPDOWN">
-
+            <div *ngSwitchCase="dynTypes.DROPDOWN" class="control-wrapper">
+                <div class="control-wrapper__edit-icon">
+                    <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
+                </div>
                 <app-dropdown-wrapper-val-accesor 
                     [validators]="model.validators"
                     [outsideDirty]="form.controls[model.name].dirty"
@@ -28,7 +35,10 @@
             </div>
 
              <!--CALENDAR period-->
-             <div *ngSwitchCase="dynTypes.CALENDAR_PERIOD">
+             <div *ngSwitchCase="dynTypes.CALENDAR_PERIOD" class="control-wrapper">
+                <div class="control-wrapper__edit-icon">
+                    <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
+                </div>
                 <app-period-wrapper-val-accesor
                     [validators]="model.validators"
                     [outsideDirty]="form.controls[model.name].dirty"
@@ -36,6 +46,21 @@
                     formControlName="{{model.name}}" 
                     [label]="model.label">
                 </app-period-wrapper-val-accesor>
+            </div>
+
+            <!-- INPUT TEXT-->
+            <div *ngSwitchCase="dynTypes.INPUT_TEXT" class="control-wrapper">
+                <div class="control-wrapper__edit-icon">
+                    <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
+                </div>
+                <app-input-wrapper-val-accessor
+                [validators]="model.validators"
+                [outsideDirty]="form.controls[model.name].dirty"
+                [control]="form.controls[model.name]"
+                formControlName="{{model.name}}" 
+                [label]="model.label"
+                >
+            </app-input-wrapper-val-accessor>
             </div>
         </div>
     </div>

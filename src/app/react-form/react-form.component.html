@@ -13,6 +13,7 @@
             <app-dyn-component-place
               [components]="df"
               [form]="dynamic"
+              (eventEdit)="edit($event)"
               >
             </app-dyn-component-place>
         </ng-container>

@@ -76,13 +76,23 @@ export class ReactFormComponent implements OnInit {
     ref.onClose
       .pipe(filter(d => !!d))
       .subscribe(d => {
-         const m = new ModelDynComponent({
-           id: 10,
-           name: d.name,
-           label: d.label,
-           sourceCode: d.sourceCode
-         });
-         this._fakeHttp.addControl(m);
+        const m = new ModelDynComponent({
+          id: 10,
+          name: d.name,
+          label: d.label,
+          sourceCode: d.sourceCode
+        });
+        this._fakeHttp.addControl(m);
+      });
+  }
+  edit(m: ModelDynComponent): void {
+    const ref = this._openModal.edit(m.clone());
+    ref.onClose
+      .subscribe(d => {
+        const newModel = new ModelDynComponent(d);
+        const index = this.df.findIndex(currModel => currModel.id === d.id);
+        this.df[index] = newModel;
+        this._cd.detectChanges();
       });
   }
 

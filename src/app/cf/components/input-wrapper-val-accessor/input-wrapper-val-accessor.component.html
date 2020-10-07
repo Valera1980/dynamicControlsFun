@@ -1,4 +1,5 @@
 <p>{{label}} <span *ngIf="isRequired()"> *</span></p>
-<p-calendar [(ngModel)]="value" [showTime]="true" [selectionMode]="'range'" [inputStyle]="{'width':'100%'}"></p-calendar>
+<input class="input-cf" type="text" [(ngModel)]="value">
 <h4>is dirty: {{dirty}}</h4>
+<h4>is valid: {{isValid()}}</h4>
 <p class="error-msg" *ngIf="dirty && !isValid()">{{getError()}}</p>

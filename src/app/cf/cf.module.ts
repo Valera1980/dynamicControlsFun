@@ -14,6 +14,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OpenModalCfService } from './services/open-modal-cf/open-modal-cf.service';
 import { CfFormComponent } from './components/cf-form/cf-form.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { InputWrapperValAccessorComponent } from './components/input-wrapper-val-accessor/input-wrapper-val-accessor.component';
 
 
 
@@ -24,7 +25,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     PeriodWrapperValAccesorComponent,
     DynComponentPlaceComponent,
     AdressWrapperValAccesorComponent,
-    CfFormComponent
+    CfFormComponent,
+    InputWrapperValAccessorComponent
   ],
   imports: [
     CommonModule,

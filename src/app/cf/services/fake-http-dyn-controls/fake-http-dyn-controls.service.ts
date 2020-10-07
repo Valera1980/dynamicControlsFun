@@ -10,6 +10,13 @@ export class FakeHttpDynControlsService {
 
   controls = [
     new ModelDynComponent({
+      id: 15,
+      name: 'input_one',
+      type: 'input_text',
+      label: 'тест инпут',
+      defaultValue: ''
+    }),
+    new ModelDynComponent({
       id: 1,
       name: 'city_one',
       type: 'dropdown',

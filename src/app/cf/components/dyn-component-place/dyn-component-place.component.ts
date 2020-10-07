@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { ModelDynComponent } from '../../models/dyn-component.model';
 import { EnumDynTypes } from '../../enums/dynamic.types';
 
@@ -14,11 +14,16 @@ export class DynComponentPlaceComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() components: ModelDynComponent[];
 
+  @Output() eventEdit = new EventEmitter();
+
   dynTypes = EnumDynTypes;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  edit(m: ModelDynComponent): void {
+    this.eventEdit.emit(m);
   }
 
 }

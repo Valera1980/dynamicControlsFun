@@ -1,18 +1,23 @@
-.cf-item-form{
-    // height: 500px;
-    // &__wrapper {
+.cf-item-form {
+    &__wrapper {
+        width: 100%;
+        padding-top: 12px;
+    }
+    &__control {
+        width: 100%;
+        padding: 6px;
+    }
 
-    // }
-    // &__control {
-        
-    // }
     &__monaco-wrapper {
-        height: 500px;
+        height: 100%;
+        margin-top: 8px;
+    }
+    &__btn-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__btn {
+        margin-right: 5px;
     }
 }
-
-// .my-code-editor {
-//     .editor-container {
-//       height: 100%;
-//     }
-//   }

@@ -41,4 +41,19 @@ export class ModelDynComponent implements IDynComponent {
         this.validators = validators;
         this.sourceCode = sourceCode;
     }
+    clone(): ModelDynComponent {
+        return new ModelDynComponent(this.serialize());
+    }
+    serialize(): IDynComponent {
+        return {
+            id: this.id,
+            defaultValue: this.defaultValue,
+            label: this.label,
+            name: this.name,
+            sourceCode: this.sourceCode,
+            type: this.type,
+            validators: this.validators,
+            options: this.options.map(o => ({ ...{}, ...o }))
+        };
+    }
 }

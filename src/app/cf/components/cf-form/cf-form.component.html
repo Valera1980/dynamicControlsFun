@@ -1,18 +1,21 @@
 <div class="cf-item-form" [formGroup]="form">
     <div class="cf-item-form__wrapper">
-        <input formControlName="name" type="text" placeholder="name">
+        <input  class="cf-item-form__control" formControlName="id" type="number" hidden>
+        <input  class="cf-item-form__control" formControlName="name" type="text" placeholder="name">
     </div>
     <div class="cf-item-form__wrapper">
-        <p-dropdown formControlName="type" [options]="typesOption">
+    <p-dropdown  formControlName="type" [options]="typesOption" [style]="{'width':'100%', 'margin':'0px'}">
             
         </p-dropdown>
     </div>
     <div class="cf-item-form__wrapper">
-        <input formControlName="label" type="text" placeholder="label">
+        <input formControlName="label" class="cf-item-form__control" type="text" placeholder="label">
     </div>
     <div class="cf-item-form__monaco-wrapper">
         <ngx-monaco-editor class="my-code-editor"  [options]="editorOptions" formControlName="sourceCode"></ngx-monaco-editor>
     </div>
-    <p-button (onClick)="save()">Save</p-button>
-    <p-button (onClick)="cancel()">Cancel</p-button>
+    <div class="cf-item-form__btn-wrapper">
+        <p-button class="cf-item-form__btn" (onClick)="save()">Save</p-button>
+        <p-button class="cf-item-form__btn" (onClick)="cancel()">Cancel</p-button>
+    </div>
 </div>
