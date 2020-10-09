@@ -1,5 +1,10 @@
 <p>{{label}} <span *ngIf="isRequired()"> *</span></p>
-<input class="input-cf" type="text" [(ngModel)]="value">
+<input 
+    appFocus [control]="control"
+    appMouseOver [control]="control"
+    class="input-cf" 
+    type="text" 
+    [(ngModel)]="value">
 <h4>is dirty: {{dirty}}</h4>
 <h4>is valid: {{isValid()}}</h4>
 <p class="error-msg" *ngIf="dirty && !isValid()">{{getError()}}</p>

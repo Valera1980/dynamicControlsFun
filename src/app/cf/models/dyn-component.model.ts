@@ -1,3 +1,4 @@
+import { TEventsArray } from './../enums/events';
 import { IValidator } from './validator.model';
 import { TDynTypes } from './../enums/dynamic.types';
 import { SelectItem } from 'primeng/api';
@@ -10,6 +11,7 @@ export interface IDynComponent {
     readonly options?: SelectItem[];
     readonly validators: IValidator[];
     readonly sourceCode: string;
+    readonly scripts: TEventsArray;
 }
 
 export class ModelDynComponent implements IDynComponent {
@@ -21,6 +23,7 @@ export class ModelDynComponent implements IDynComponent {
     readonly options?: SelectItem[];
     readonly validators: IValidator[];
     readonly sourceCode: string;
+    readonly scripts: TEventsArray;
 
     constructor({
         defaultValue = null,
@@ -30,7 +33,13 @@ export class ModelDynComponent implements IDynComponent {
         type = 'calendar',
         options = [],
         validators = [],
-        sourceCode = ''
+        sourceCode = '',
+        scripts = [
+            { event: 'change', source: '' },
+            { event: 'click', source: '' },
+            { event: 'focus', source: '' },
+            { event: 'mouseover', source: '' }
+        ]
     }: Partial<IDynComponent> = {}) {
         this.defaultValue = defaultValue;
         this.id = id;
@@ -40,6 +49,7 @@ export class ModelDynComponent implements IDynComponent {
         this.options = Array.isArray(options) ? options : [];
         this.validators = validators;
         this.sourceCode = sourceCode;
+        this.scripts = scripts;
     }
     clone(): ModelDynComponent {
         return new ModelDynComponent(this.serialize());
@@ -53,7 +63,8 @@ export class ModelDynComponent implements IDynComponent {
             sourceCode: this.sourceCode,
             type: this.type,
             validators: this.validators,
-            options: this.options.map(o => ({ ...{}, ...o }))
+            options: this.options.map(o => ({ ...{}, ...o })),
+            scripts: this.scripts.map(e => ({ event: e.event, source: e.source }))
         };
     }
 }

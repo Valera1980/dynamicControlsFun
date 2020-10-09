@@ -12,7 +12,24 @@
         <input formControlName="label" class="cf-item-form__control" type="text" placeholder="label">
     </div>
     <div class="cf-item-form__monaco-wrapper">
-        <ngx-monaco-editor class="my-code-editor"  [options]="editorOptions" formControlName="sourceCode"></ngx-monaco-editor>
+        <p-tabView (onChange)="onChange($event)">
+            <p-tabPanel header="onChange">
+                <ngx-monaco-editor class="my-code-editor"  [options]="editorOptions" formControlName="sourceCode"></ngx-monaco-editor>
+            </p-tabPanel>
+            {{!focusSelected ? 'hidden' : 'show'}}
+            <p-tabPanel header="focus">
+                <div *ngIf="!focusSelected">
+                    <input hidden="!focusSelected" formControlName="sourceCodeFocus">
+                </div>
+                <ngx-monaco-editor  *ngIf="focusSelected" class="my-code-editor"  [options]="editorOptions" formControlName="sourceCodeFocus"></ngx-monaco-editor>
+            </p-tabPanel>
+            <p-tabPanel header="hover">
+                <div *ngIf="!hoverSelected">
+                    <input hidden="!hoverSelected" formControlName="sourceCodeHover">
+                </div>
+                <ngx-monaco-editor  *ngIf="hoverSelected" class="my-code-editor"  [options]="editorOptions" formControlName="sourceCodeHover"></ngx-monaco-editor>
+            </p-tabPanel>
+        </p-tabView>
     </div>
     <div class="cf-item-form__btn-wrapper">
         <p-button class="cf-item-form__btn" (onClick)="save()">Save</p-button>

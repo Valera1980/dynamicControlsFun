@@ -15,6 +15,9 @@ import { OpenModalCfService } from './services/open-modal-cf/open-modal-cf.servi
 import { CfFormComponent } from './components/cf-form/cf-form.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { InputWrapperValAccessorComponent } from './components/input-wrapper-val-accessor/input-wrapper-val-accessor.component';
+import { FocusDirective } from './directives/focus/focus.directive';
+import { MouseOverDirective } from './directives/mouse-over/mouse-over.directive';
+import { TabViewModule } from 'primeng/tabview';
 
 
 
@@ -26,7 +29,9 @@ import { InputWrapperValAccessorComponent } from './components/input-wrapper-val
     DynComponentPlaceComponent,
     AdressWrapperValAccesorComponent,
     CfFormComponent,
-    InputWrapperValAccessorComponent
+    InputWrapperValAccessorComponent,
+    FocusDirective,
+    MouseOverDirective
   ],
   imports: [
     CommonModule,
@@ -37,7 +42,8 @@ import { InputWrapperValAccessorComponent } from './components/input-wrapper-val
     ProgressSpinnerModule,
     ButtonModule,
     DynamicDialogModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(),
+    TabViewModule
   ],
   exports: [
     CalendarWrapperValAccesorComponent,
