@@ -7,6 +7,7 @@ import { Injectable, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorR
 import { minDateValidator } from '../../validators/min-date.validator';
 import { maxDateValidator } from '../../validators/max-date.validator';
 import { betweenDateValidator } from '../../validators/between-date.validator';
+import { getSourceOrDefault } from '../../utils/source.util';
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +25,16 @@ export class GenerateControlsService {
       .pipe(
         map((df: ModelDynComponent[]) => {
           for (const model of df) {
-            console.log(model);
+            // console.log(model);
             const newFc = new FormControl(model.defaultValue);
             // если есть исходный код, то надо его исполнить
             newFc.valueChanges
               .pipe(
-                filter(() => model.sourceCode.length > 0)
+                map(() => getSourceOrDefault('change', model.scripts)),
+                filter((source) => !!source.length)
               )
-              .subscribe(() => {
-                const f = new Function(model.sourceCode);
+              .subscribe((source) => {
+                const f = new Function(source);
                 f(newFc, formInstance);
               });
             const newFcWithValidators = this._addValidators(newFc, model);

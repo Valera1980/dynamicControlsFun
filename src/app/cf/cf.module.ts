@@ -9,7 +9,6 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
-import { AdressWrapperValAccesorComponent } from './components/adress-wrapper-val-accesor/adress-wrapper-val-accesor.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OpenModalCfService } from './services/open-modal-cf/open-modal-cf.service';
 import { CfFormComponent } from './components/cf-form/cf-form.component';
@@ -27,7 +26,6 @@ import { TabViewModule } from 'primeng/tabview';
     DropdownWrapperValAccesorComponent,
     PeriodWrapperValAccesorComponent,
     DynComponentPlaceComponent,
-    AdressWrapperValAccesorComponent,
     CfFormComponent,
     InputWrapperValAccessorComponent,
     FocusDirective,
@@ -55,8 +53,7 @@ import { TabViewModule } from 'primeng/tabview';
     FormsModule,
     DropdownModule,
     ProgressSpinnerModule,
-    ButtonModule,
-    // MonacoEditorModule
+    ButtonModule
   ],
   providers: [
     OpenModalCfService,

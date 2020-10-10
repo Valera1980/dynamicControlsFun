@@ -2,6 +2,7 @@ import { IValidator } from './../../models/validator.model';
 import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
+import { TEventsArray } from '../../enums/events';
 
 @Component({
   selector: 'app-period-wrapper-val-accesor',
@@ -24,6 +25,8 @@ export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAcc
   @Input() defaultValue: any;
   @Input() outsideDirty: boolean;
   @Input() validators: IValidator[];
+  @Input() scripts: TEventsArray = [];
+
   constructor() { }
 
   ngOnInit(): void { }
@@ -73,7 +76,7 @@ export class PeriodWrapperValAccesorComponent implements OnInit, ControlValueAcc
     return !this.control.errors;
   }
   getError(): string {
-    console.log(this.control.errors);
+    // console.log(this.control.errors);
     if (this.control.errors) {
       const [first] = Object.keys(this.control.errors);
       const validator = this.validators.find(v => v.type === first);

@@ -11,7 +11,9 @@
                     [outsideDirty]="form.controls[model.name].dirty"
                     [control]="form.controls[model.name]"
                     formControlName="{{model.name}}" 
-                    [label]="model.label">
+                    [label]="model.label"
+                    [scripts]="model.scripts"
+                    >
                 </app-calendar-wrapper-val-accesor>
             </div>
             
@@ -30,7 +32,9 @@
                     [options]="model.options"
                     [control]="form.controls[model.name]"
                     formControlName="{{model.name}}" 
-                    [label]="model.label">
+                    [label]="model.label"
+                    [scripts]="model.scripts"
+                    >
                 </app-dropdown-wrapper-val-accesor>
             </div>
 
@@ -44,7 +48,9 @@
                     [outsideDirty]="form.controls[model.name].dirty"
                     [control]="form.controls[model.name]"
                     formControlName="{{model.name}}" 
-                    [label]="model.label">
+                    [label]="model.label"
+                    [scripts]="model.scripts"
+                    >
                 </app-period-wrapper-val-accesor>
             </div>
 
@@ -59,6 +65,7 @@
                 [control]="form.controls[model.name]"
                 formControlName="{{model.name}}" 
                 [label]="model.label"
+                [scripts]="model.scripts"
                 >
             </app-input-wrapper-val-accessor>
             </div>

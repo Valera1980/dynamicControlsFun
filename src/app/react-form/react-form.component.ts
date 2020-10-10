@@ -7,6 +7,7 @@ import { filter } from 'rxjs/operators';
 import { setCustomFieldsAsDirty } from '../cf/utils/cf';
 import { OpenModalCfService } from '../cf/services/open-modal-cf/open-modal-cf.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { generateId } from '../cf/utils/id.generator';
 
 @Component({
   selector: 'app-react-form',
@@ -54,13 +55,8 @@ export class ReactFormComponent implements OnInit {
       .pipe(filter(() => !this.init))
       .subscribe(d => {
         console.log(d);
-        // this._cd.detectChanges();
       });
-
-    // this.dateControl.valueChanges
-    //   .subscribe(d => {
-    //     console.log(d);
-    //   });
+ 
   }
 
   get dynamic(): FormGroup {
@@ -77,10 +73,14 @@ export class ReactFormComponent implements OnInit {
       .pipe(filter(d => !!d))
       .subscribe(d => {
         const m = new ModelDynComponent({
-          id: 10,
+          id: generateId(),
           name: d.name,
           label: d.label,
-          sourceCode: d.sourceCode
+          scripts: [
+            { event: 'change', source: d.sourceCode },
+            { event: 'focus', source: d.sourceCodeFocus },
+            { event: 'mouseover', source: d.sourceCodeHover },
+          ]
         });
         this._fakeHttp.addControl(m);
       });

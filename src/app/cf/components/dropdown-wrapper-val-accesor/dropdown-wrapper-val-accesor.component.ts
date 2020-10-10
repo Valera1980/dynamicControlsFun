@@ -3,6 +3,7 @@ import { ICfComponentWrapper } from './../../models/custom-field.component.intre
 import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
+import { TEventsArray } from '../../enums/events';
 
 @Component({
   selector: 'app-dropdown-wrapper-val-accesor',
@@ -25,6 +26,8 @@ export class DropdownWrapperValAccesorComponent implements OnInit, ControlValueA
   @Input() options: SelectItem[];
   @Input() outsideDirty: boolean;
   @Input() validators: IValidator[];
+  @Input() scripts: TEventsArray = [];
+
 
   constructor(private _cd: ChangeDetectorRef) { }
 

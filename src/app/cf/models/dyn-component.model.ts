@@ -10,7 +10,6 @@ export interface IDynComponent {
     readonly type: TDynTypes;
     readonly options?: SelectItem[];
     readonly validators: IValidator[];
-    readonly sourceCode: string;
     readonly scripts: TEventsArray;
 }
 
@@ -22,7 +21,6 @@ export class ModelDynComponent implements IDynComponent {
     readonly type: TDynTypes;
     readonly options?: SelectItem[];
     readonly validators: IValidator[];
-    readonly sourceCode: string;
     readonly scripts: TEventsArray;
 
     constructor({
@@ -33,7 +31,6 @@ export class ModelDynComponent implements IDynComponent {
         type = 'calendar',
         options = [],
         validators = [],
-        sourceCode = '',
         scripts = [
             { event: 'change', source: '' },
             { event: 'click', source: '' },
@@ -48,7 +45,6 @@ export class ModelDynComponent implements IDynComponent {
         this.type = type;
         this.options = Array.isArray(options) ? options : [];
         this.validators = validators;
-        this.sourceCode = sourceCode;
         this.scripts = scripts;
     }
     clone(): ModelDynComponent {
@@ -60,7 +56,6 @@ export class ModelDynComponent implements IDynComponent {
             defaultValue: this.defaultValue,
             label: this.label,
             name: this.name,
-            sourceCode: this.sourceCode,
             type: this.type,
             validators: this.validators,
             options: this.options.map(o => ({ ...{}, ...o })),

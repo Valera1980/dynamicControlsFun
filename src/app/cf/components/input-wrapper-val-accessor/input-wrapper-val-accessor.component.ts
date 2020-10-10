@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Inpu
 import { ICfComponentWrapper } from '../../models/custom-field.component.intreface';
 import { SelectItem } from 'primeng/api';
 import { IValidator } from '../../models/validator.model';
+import { TEventsArray } from '../../enums/events';
 
 @Component({
   selector: 'app-input-wrapper-val-accessor',
@@ -26,6 +27,8 @@ export class InputWrapperValAccessorComponent implements OnInit, ControlValueAcc
   @Input() options?: SelectItem<any>[];
   @Input() outsideDirty: boolean;
   @Input() validators: IValidator[];
+  @Input() scripts: TEventsArray = [];
+
   constructor(
     private _cd: ChangeDetectorRef
   ) { }

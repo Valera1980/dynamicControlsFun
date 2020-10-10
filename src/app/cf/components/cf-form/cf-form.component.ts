@@ -1,3 +1,4 @@
+import { TEventsArray } from './../../enums/events';
 import { FakeHttpDynControlsService } from './../../services/fake-http-dyn-controls/fake-http-dyn-controls.service';
 import { ModelDynComponent } from './../../models/dyn-component.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -5,6 +6,7 @@ import { SelectItem } from 'primeng/api';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { EnumDynTypes } from '../../enums/dynamic.types';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TEvent } from '../../enums/events';
 // import * as monaco from 'monaco-editor';
 
 @Component({
@@ -42,14 +44,14 @@ export class CfFormComponent implements OnInit {
       name: [model.name],
       type: [model.type || 'input_text'],
       label: [model.label],
-      sourceCode: [model.sourceCode.length ? model.sourceCode : this.defSourceCode],
-      sourceCodeFocus: [''],
-      sourceCodeHover: ['']
+      sourceCode: [this._getSource('change', model.scripts)],
+      sourceCodeFocus: [this._getSource('focus', model.scripts)],
+      sourceCodeHover: [this._getSource('mouseover', model.scripts)]
     });
 
     this.form.valueChanges
       .subscribe(d => {
-        console.log(d);
+        // console.log(d);
 
       });
   }
@@ -74,6 +76,9 @@ export class CfFormComponent implements OnInit {
 
       }, 1000);
     }
+  }
+  private _getSource(key: TEvent, scripts: TEventsArray): string {
+    return scripts.find(s => s.event === key).source || this.defSourceCode;
   }
 
 }

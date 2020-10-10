@@ -7,12 +7,12 @@ import { Directive, HostListener, Input } from '@angular/core';
 export class FocusDirective {
 
   @Input() control: FormControl;
-  @Input() source: FormControl;
+  @Input() scripts: FormControl;
   constructor() { }
 
   @HostListener('focus', ['$event.target'])
   onFocus(): void {
-    console.log('FOCUS');
+    // console.log('FOCUS');
     console.log(this.control);
   }
 

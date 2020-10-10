@@ -2,6 +2,7 @@ import { IValidator } from './../../models/validator.model';
 import { ICfComponentWrapper } from './../../models/custom-field.component.intreface';
 import { Component, OnInit, forwardRef, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl, Validators } from '@angular/forms';
+import { TEventsArray } from '../../enums/events';
 
 @Component({
   selector: 'app-calendar-wrapper-val-accesor',
@@ -24,6 +25,7 @@ export class CalendarWrapperValAccesorComponent implements OnInit, ControlValueA
   @Input() defaultValue: any;
   @Input() outsideDirty: boolean;
   @Input() validators: IValidator[];
+  @Input() scripts: TEventsArray = [];
 
   constructor() { }
 
