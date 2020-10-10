@@ -14,7 +14,7 @@
     <div class="cf-item-form__monaco-wrapper">
         <p-tabView (onChange)="onChange($event)">
             <p-tabPanel header="onChange">
-                <ngx-monaco-editor class="my-code-editor"  [options]="editorOptions" formControlName="sourceCode"></ngx-monaco-editor>
+                <ngx-monaco-editor class="my-code-editor" #mmm [options]="editorOptions" formControlName="sourceCode"></ngx-monaco-editor>
             </p-tabPanel>
             {{!focusSelected ? 'hidden' : 'show'}}
             <p-tabPanel header="focus">

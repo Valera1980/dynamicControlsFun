@@ -22,9 +22,15 @@ export class CfFormComponent implements OnInit {
     { label: 'dropdown', value: EnumDynTypes.DROPDOWN },
     { label: 'iput_text', value: EnumDynTypes.INPUT_TEXT },
   ];
-  editorOptions = { theme: 'vs-dark', language: 'typescript' };
+  editorOptions = {
+    theme: 'vs-dark',
+    language: 'typescript',
+    quickSuggestions: true,
+    wordBasedSuggestions: true
+  };
   form: FormGroup;
   defSourceCode = 'const [control, form] = [...arguments];\nform.patchValue({"city_one":3});';
+  @ViewChild('mmm', { static: true }) private _editor: any;
 
   focusSelected = false;
   hoverSelected = false;
@@ -37,6 +43,9 @@ export class CfFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    console.log(this._editor.editor);
+
     const data = this._config.data;
     const model = data.model as ModelDynComponent;
     this.form = this._fb.group({

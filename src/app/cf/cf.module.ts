@@ -19,7 +19,6 @@ import { MouseOverDirective } from './directives/mouse-over/mouse-over.directive
 import { TabViewModule } from 'primeng/tabview';
 
 
-
 @NgModule({
   declarations: [
     CalendarWrapperValAccesorComponent,
@@ -40,7 +39,7 @@ import { TabViewModule } from 'primeng/tabview';
     ProgressSpinnerModule,
     ButtonModule,
     DynamicDialogModule,
-    MonacoEditorModule.forRoot(),
+    MonacoEditorModule,
     TabViewModule
   ],
   exports: [
