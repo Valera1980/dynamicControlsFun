@@ -10,9 +10,13 @@
     box-shadow: 4px 4px 4px rgba(33, 71, 2, 0.133);
     &__edit-icon {
         display: flex;
-        justify-content: flex-end;;
+        justify-content: space-between;;
         padding: 10px;
         background-color: #1212;
+    }
+    &__info {
+        font-size: 12px;
+        font-weight: bold;
     }
     &__icon {
        &:hover{

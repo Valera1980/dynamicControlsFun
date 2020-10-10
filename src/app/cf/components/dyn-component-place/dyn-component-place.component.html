@@ -4,6 +4,7 @@
             <!--CALENDAR-->
             <div *ngSwitchCase="dynTypes.CALENDAR" class="control-wrapper">
                 <div class="control-wrapper__edit-icon">
+                    <div  class="control-wrapper__info">{{model.id}}</div>
                     <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
                 </div>
                 <app-calendar-wrapper-val-accesor
@@ -24,6 +25,7 @@
 
             <div *ngSwitchCase="dynTypes.DROPDOWN" class="control-wrapper">
                 <div class="control-wrapper__edit-icon">
+                    <div class="control-wrapper__info">{{model.id}}</div>
                     <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
                 </div>
                 <app-dropdown-wrapper-val-accesor 
@@ -41,6 +43,7 @@
              <!--CALENDAR period-->
              <div *ngSwitchCase="dynTypes.CALENDAR_PERIOD" class="control-wrapper">
                 <div class="control-wrapper__edit-icon">
+                    <div  class="control-wrapper__info">{{model.id}}</div>
                     <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
                 </div>
                 <app-period-wrapper-val-accesor
@@ -57,6 +60,7 @@
             <!-- INPUT TEXT-->
             <div *ngSwitchCase="dynTypes.INPUT_TEXT" class="control-wrapper">
                 <div class="control-wrapper__edit-icon">
+                    <div  class="control-wrapper__info">{{model.id}}</div>
                     <i class="pi pi-pencil control-wrapper__icon" (click)="edit(model)"></i>
                 </div>
                 <app-input-wrapper-val-accessor
