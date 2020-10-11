@@ -8,6 +8,7 @@ import { setCustomFieldsAsDirty } from '../cf/utils/cf';
 import { OpenModalCfService } from '../cf/services/open-modal-cf/open-modal-cf.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { generateId } from '../cf/utils/id.generator';
+import { TEventsArray } from '../cf/enums/events';
 
 @Component({
   selector: 'app-react-form',
@@ -56,7 +57,7 @@ export class ReactFormComponent implements OnInit {
       .subscribe(d => {
         console.log(d);
       });
- 
+
   }
 
   get dynamic(): FormGroup {
@@ -88,9 +89,15 @@ export class ReactFormComponent implements OnInit {
   edit(m: ModelDynComponent): void {
     const ref = this._openModal.edit(m.clone());
     ref.onClose
+      .pipe(filter(d => !!d))
       .subscribe(d => {
-        const newModel = new ModelDynComponent(d);
         const index = this.df.findIndex(currModel => currModel.id === d.id);
+        const scripts: TEventsArray = [
+           { event: 'change', source: d.sourceCode},
+           { event: 'focus', source: d.sourceCodeFocus},
+           { event: 'mouseover', source: d.sourceCodeHover}
+        ];
+        const newModel = new ModelDynComponent({...this.df[index].serialize(), ...d, ...{ scripts }});
         this.df[index] = newModel;
         this._cd.detectChanges();
       });

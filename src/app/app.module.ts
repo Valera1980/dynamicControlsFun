@@ -7,11 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactFormComponent } from './react-form/react-form.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
-import { NativeMonacoComponent } from './native-monaco/native-monaco.component';
 import { Observable, BehaviorSubject } from 'rxjs';
+import * as models from './cf/models/monaco';
 
 export function onMonacoLoad(): void {
 
+  console.log(models);
   const ls = [
     Observable,
     BehaviorSubject,
@@ -27,12 +28,10 @@ const monacoConfig: NgxMonacoEditorConfig = {
   defaultOptions: { scrollBeyondLastLine: false },
   onMonacoLoad
 };
- 
 @NgModule({
   declarations: [
     AppComponent,
-    ReactFormComponent,
-    NativeMonacoComponent,
+    ReactFormComponent
   ],
   imports: [
     BrowserModule,
