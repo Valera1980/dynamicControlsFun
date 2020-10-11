@@ -20,8 +20,8 @@ export function onMonacoLoad(): void {
   ].join('\n');
 
   const libUri = 'ts:filename/facts.d.ts';
-  monaco.languages.typescript.javascriptDefaults.addExtraLib(ls, libUri);
-  monaco.editor.createModel(ls, 'typescript', monaco.Uri.parse(libUri));
+  monaco.languages.typescript.javascriptDefaults.addExtraLib(ls, '');
+  monaco.editor.createModel(ls, 'typescript', monaco.Uri.parse(''));
 }
 const monacoConfig: NgxMonacoEditorConfig = {
   baseUrl: 'assets',
