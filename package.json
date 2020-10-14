@@ -23,6 +23,7 @@
     "@angular/router": "~10.1.5",
     "moment-mini": "^2.24.0",
     "monaco-editor": "^0.21.2",
+    "ngx-ip-address": "^2.0.9",
     "ngx-monaco-editor": "^9.0.0",
     "primeicons": "^4.0.0",
     "primeng": "^10.0.2",
