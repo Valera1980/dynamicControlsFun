@@ -10,6 +10,7 @@ import { ReactFormComponent } from './react-form/react-form.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { Observable, BehaviorSubject } from 'rxjs';
 import * as models from './cf/models/monaco';
+import { NgxIpModule} from 'ngx-ip-address';
 
 export function onMonacoLoad(): void {
 
@@ -42,7 +43,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     AppRoutingModule,
     BrowserAnimationsModule,
     CfModule,
-    MonacoEditorModule.forRoot(monacoConfig)
+    MonacoEditorModule.forRoot(monacoConfig),
+    NgxIpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
