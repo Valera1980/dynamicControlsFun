@@ -29,7 +29,7 @@ export class CfFormComponent implements OnInit {
     wordBasedSuggestions: true
   };
   form: FormGroup;
-  defSourceCode = 'const [control, form] = [...arguments];\nform.patchValue({"city_one":3});';
+  defSourceCode = 'const [ control, form ]: [FormControl, FormGroup] = [...arguments];\nconsole.log(arguments)';
   @ViewChild('mmm', { static: true }) private _editor: any;
 
   focusSelected = false;

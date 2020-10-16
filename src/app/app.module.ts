@@ -1,3 +1,4 @@
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ModelDynComponent } from './cf/models/dyn-component.model';
 import { CfModule } from './cf/cf.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +17,10 @@ export function onMonacoLoad(): void {
   const ls = [
     Observable,
     BehaviorSubject,
-    ModelDynComponent
+    ModelDynComponent,
+    FormControl,
+    FormGroup,
+    FormsModule
   ].join('\n');
 
   const libUri = 'ts:filename/facts.d.ts';
